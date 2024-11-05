@@ -1,0 +1,42 @@
+{
+    "sourceFile": "src/App.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 6,
+            "patches": [
+                {
+                    "date": 1730589936084,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1730683689058,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,8 +12,9 @@\n                 <Route\n                 path='/'\n                 element={<Listado />}\n               />\n+              \n             </Routes>\n           </div>\n         </Router>\n       </>\n"
+                },
+                {
+                    "date": 1730683694752,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n                 <Route\n                 path='/'\n                 element={<Listado />}\n               />\n-              \n+                <Route\n             </Routes>\n           </div>\n         </Router>\n       </>\n"
+                },
+                {
+                    "date": 1730683701485,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,8 +13,11 @@\n                 path='/'\n                 element={<Listado />}\n               />\n                 <Route\n+                path='/listado'\n+                element={<Listado />}\n+              />\n             </Routes>\n           </div>\n         </Router>\n       </>\n"
+                },
+                {
+                    "date": 1730683710994,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,9 @@\n                 path='/'\n                 element={<Listado />}\n               />\n                 <Route\n-                path='/listado'\n+                path='/rh'\n                 element={<Listado />}\n               />\n             </Routes>\n           </div>\n"
+                },
+                {
+                    "date": 1730683718945,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,10 +13,10 @@\n                 path='/'\n                 element={<Listado />}\n               />\n                 <Route\n-                path='/rh'\n-                element={<Listado />}\n+                path='/rhf'\n+                element={<React />}\n               />\n             </Routes>\n           </div>\n         </Router>\n"
+                },
+                {
+                    "date": 1730683773118,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,8 @@\n import { Route, BrowserRouter as Router } from 'react-router-dom'\n import { Routes } from 'react-router-dom'\n import Listado from './pages/Listado'\n+import ReactHookForm from './pages/Rhf'\n \n function App() {\n \n     return (\n@@ -14,9 +15,9 @@\n                 element={<Listado />}\n               />\n                 <Route\n                 path='/rhf'\n-                element={<React />}\n+                element={<ReactHookForm />}\n               />\n             </Routes>\n           </div>\n         </Router>\n"
+                }
+            ],
+            "date": 1730589936084,
+            "name": "Commit-0",
+            "content": "import { Route, BrowserRouter as Router } from 'react-router-dom'\nimport { Routes } from 'react-router-dom'\nimport Listado from './pages/Listado'\n\nfunction App() {\n\n    return (\n      <>\n        <Router>\n          <div>\n            <Routes>\n                <Route\n                path='/'\n                element={<Listado />}\n              />\n            </Routes>\n          </div>\n        </Router>\n      </>\n    )\n  }\n\nexport default App\n"
+        }
+    ]
+}

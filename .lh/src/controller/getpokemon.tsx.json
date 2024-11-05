@@ -1,0 +1,234 @@
+{
+    "sourceFile": "src/controller/getpokemon.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 54,
+            "patches": [
+                {
+                    "date": 1730582361794,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1730582367236,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,10 +5,10 @@\n     // API FETCH La API Fetch proporciona una interfaz JavaScript par acceder y manipular partes del canal HTTP, tales como peticiones y respuestas\r\n     const response = await fetch('https://unpkg.com/pokemons@1.1.0/pokemons.json')\r\n \r\n     const datos = await response.json()\r\n-    const pokemons = datos.results.map((pokemon:any) => ({\r\n-        name: pokemones.name,\r\n+    const pokemons = datos.results.map((pokemones:any) => ({\r\n+        name: pokemon.name,\r\n         id: pokemon.national_number,\r\n         imggif: pokemon.sprites['animated'],\r\n         imgnormal: pokemon.sprites['normal'],\r\n         imglarge: pokemon.sprites['large'],\r\n"
+                },
+                {
+                    "date": 1730582373583,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n     // API FETCH La API Fetch proporciona una interfaz JavaScript par acceder y manipular partes del canal HTTP, tales como peticiones y respuestas\r\n     const response = await fetch('https://unpkg.com/pokemons@1.1.0/pokemons.json')\r\n \r\n     const datos = await response.json()\r\n-    const pokemons = datos.results.map((pokemones:any) => ({\r\n+    const pokemons = datos.results.map((pokemon:any) => ({\r\n         name: pokemon.name,\r\n         id: pokemon.national_number,\r\n         imggif: pokemon.sprites['animated'],\r\n         imgnormal: pokemon.sprites['normal'],\r\n"
+                },
+                {
+                    "date": 1730582602211,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,8 +18,9 @@\n         deffense: pokemon.defense,\r\n         sp_atk: pokemon.sp_atk,\r\n         sp_def: pokemon.sp_def,\r\n         speed: pokemon.speed\r\n+        type\r\n     }));\r\n \r\n     return pokemons;\r\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1730582608067,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,10 +17,10 @@\n         attack: pokemon.attack,\r\n         deffense: pokemon.defense,\r\n         sp_atk: pokemon.sp_atk,\r\n         sp_def: pokemon.sp_def,\r\n-        speed: pokemon.speed\r\n-        type\r\n+        speed: pokemon.speed,\r\n+        type: pokemon.type\r\n     }));\r\n \r\n     return pokemons;\r\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1730582618536,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,9 @@\n         deffense: pokemon.defense,\r\n         sp_atk: pokemon.sp_atk,\r\n         sp_def: pokemon.sp_def,\r\n         speed: pokemon.speed,\r\n-        type: pokemon.type\r\n+        type: pokemon.type[]\r\n     }));\r\n \r\n     return pokemons;\r\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1730582636670,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,9 @@\n         deffense: pokemon.defense,\r\n         sp_atk: pokemon.sp_atk,\r\n         sp_def: pokemon.sp_def,\r\n         speed: pokemon.speed,\r\n-        type: pokemon.type[]\r\n+        type: pokemon.type[0], // Es un array y 0 especifica \r\n     }));\r\n \r\n     return pokemons;\r\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1730582641958,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,9 @@\n         deffense: pokemon.defense,\r\n         sp_atk: pokemon.sp_atk,\r\n         sp_def: pokemon.sp_def,\r\n         speed: pokemon.speed,\r\n-        type: pokemon.type[0], // Es un array y 0 especifica \r\n+        type: pokemon.type[0], // Es un array y 0 especifica el primer elemento del array\r\n     }));\r\n \r\n     return pokemons;\r\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1730584055726,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,28 @@\n+import { Pokemon } from \"../models/pokemon.m\"\r\n+\r\n+export async function getPokemons(): Promise<Pokemon> { // Promesa que devuelve el modelo de Pokemon.n\r\n+    // Llamado a Api Rest\r\n+    // API FETCH La API Fetch proporciona una interfaz JavaScript par acceder y manipular partes del canal HTTP, tales como peticiones y respuestas\r\n+    const response = await fetch('https://unpkg.com/pokemons@1.1.0/pokemons.json')\r\n+\r\n+    const datos = await response.json()\r\n+    const pokemons = datos.results.map((pokemon:any) => ({\r\n+        name: pokemon.name,\r\n+        id: pokemon.national_number,\r\n+        imggif: pokemon.sprites['animated'],\r\n+        imgnormal: pokemon.sprites['normal'],\r\n+        imglarge: pokemon.sprites['large'],\r\n+        total: pokemon.total,\r\n+        hp: pokemon.hp,\r\n+        attack: pokemon.attack,\r\n+        deffense: pokemon.defense,\r\n+        sp_atk: pokemon.sp_atk,\r\n+        sp_def: pokemon.sp_def,\r\n+        speed: pokemon.speed,\r\n+        type: pokemon.type[0], // Es un array y 0 especifica el primer elemento del array\r\n+    }));\r\n+\r\n+    const\r\n+\r\n+    return pokemons;\r\n+}\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1730584065924,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,34 +21,8 @@\n         speed: pokemon.speed,\r\n         type: pokemon.type[0], // Es un array y 0 especifica el primer elemento del array\r\n     }));\r\n \r\n-    const\r\n+    const repetidos\r\n \r\n     return pokemons;\r\n-}\n-import { Pokemon } from \"../models/pokemon.m\"\r\n-\r\n-export async function getPokemons(): Promise<Pokemon> { // Promesa que devuelve el modelo de Pokemon.n\r\n-    // Llamado a Api Rest\r\n-    // API FETCH La API Fetch proporciona una interfaz JavaScript par acceder y manipular partes del canal HTTP, tales como peticiones y respuestas\r\n-    const response = await fetch('https://unpkg.com/pokemons@1.1.0/pokemons.json')\r\n-\r\n-    const datos = await response.json()\r\n-    const pokemons = datos.results.map((pokemon:any) => ({\r\n-        name: pokemon.name,\r\n-        id: pokemon.national_number,\r\n-        imggif: pokemon.sprites['animated'],\r\n-        imgnormal: pokemon.sprites['normal'],\r\n-        imglarge: pokemon.sprites['large'],\r\n-        total: pokemon.total,\r\n-        hp: pokemon.hp,\r\n-        attack: pokemon.attack,\r\n-        deffense: pokemon.defense,\r\n-        sp_atk: pokemon.sp_atk,\r\n-        sp_def: pokemon.sp_def,\r\n-        speed: pokemon.speed,\r\n-        type: pokemon.type[0], // Es un array y 0 especifica el primer elemento del array\r\n-    }));\r\n-\r\n-    return pokemons;\r\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1730584073133,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,8 +21,8 @@\n         speed: pokemon.speed,\r\n         type: pokemon.type[0], // Es un array y 0 especifica el primer elemento del array\r\n     }));\r\n \r\n-    const repetidos\r\n+    const repetidosPokemons = pokemons\r\n \r\n     return pokemons;\r\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1730584097256,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,8 +21,10 @@\n         speed: pokemon.speed,\r\n         type: pokemon.type[0], // Es un array y 0 especifica el primer elemento del array\r\n     }));\r\n \r\n-    const repetidosPokemons = pokemons\r\n+    const repetidosPokemons = pokemons.filter(( , index) => {\r\n+        return pokemons.findIndex((p) => p.id === pokemon.id) === index;\r\n+    });\r\n \r\n     return pokemons;\r\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1730584122254,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,9 +21,9 @@\n         speed: pokemon.speed,\r\n         type: pokemon.type[0], // Es un array y 0 especifica el primer elemento del array\r\n     }));\r\n \r\n-    const repetidosPokemons = pokemons.filter(( , index) => {\r\n+    const unicosPokemons = pokemons.filter((pokemon, index) => {\r\n         return pokemons.findIndex((p) => p.id === pokemon.id) === index;\r\n     });\r\n \r\n     return pokemons;\r\n"
+                },
+                {
+                    "date": 1730584142130,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,9 +21,9 @@\n         speed: pokemon.speed,\r\n         type: pokemon.type[0], // Es un array y 0 especifica el primer elemento del array\r\n     }));\r\n \r\n-    const unicosPokemons = pokemons.filter((pokemon, index) => {\r\n+    const unicosPokemons = pokemons.filter((pokemon:any, index) => {\r\n         return pokemons.findIndex((p) => p.id === pokemon.id) === index;\r\n     });\r\n \r\n     return pokemons;\r\n"
+                },
+                {
+                    "date": 1730584150911,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,9 +21,9 @@\n         speed: pokemon.speed,\r\n         type: pokemon.type[0], // Es un array y 0 especifica el primer elemento del array\r\n     }));\r\n \r\n-    const unicosPokemons = pokemons.filter((pokemon:any, index) => {\r\n+    const unicosPokemons = pokemons.filter((pokemon:any, index:number) => {\r\n         return pokemons.findIndex((p) => p.id === pokemon.id) === index;\r\n     });\r\n \r\n     return pokemons;\r\n"
+                },
+                {
+                    "date": 1730584161322,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,9 @@\n         type: pokemon.type[0], // Es un array y 0 especifica el primer elemento del array\r\n     }));\r\n \r\n     const unicosPokemons = pokemons.filter((pokemon:any, index:number) => {\r\n-        return pokemons.findIndex((p) => p.id === pokemon.id) === index;\r\n+         pokemons.findIndex((p) => p.id === pokemon.id) === index;\r\n     });\r\n \r\n     return pokemons;\r\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1730584187399,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,9 @@\n         type: pokemon.type[0], // Es un array y 0 especifica el primer elemento del array\r\n     }));\r\n \r\n     const unicosPokemons = pokemons.filter((pokemon:any, index:number) => {\r\n-         pokemons.findIndex((p) => p.id === pokemon.id) === index;\r\n+        pokemons.findIndex((other:any) => p.id === pokemon.id) === index;\r\n     });\r\n \r\n     return pokemons;\r\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1730584240251,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,6 +25,6 @@\n     const unicosPokemons = pokemons.filter((pokemon:any, index:number) => {\r\n         pokemons.findIndex((other:any) => p.id === pokemon.id) === index;\r\n     });\r\n \r\n-    return pokemons;\r\n+    return unicosPokemons;\r\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1730584293283,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,9 @@\n         type: pokemon.type[0], // Es un array y 0 especifica el primer elemento del array\r\n     }));\r\n \r\n     const unicosPokemons = pokemons.filter((pokemon:any, index:number) => {\r\n-        pokemons.findIndex((other:any) => p.id === pokemon.id) === index;\r\n+        pokemons.findIndex((other:any) => other.id === pokemon.id) === index;\r\n     });\r\n \r\n     return unicosPokemons;\r\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1730584310604,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,9 +21,10 @@\n         speed: pokemon.speed,\r\n         type: pokemon.type[0], // Es un array y 0 especifica el primer elemento del array\r\n     }));\r\n \r\n-    const unicosPokemons = pokemons.filter((pokemon:any, index:number) => {\r\n+    const unicosPokemons = pokemons.filter(\r\n+        (pokemon:any, index:number) => {\r\n         pokemons.findIndex((other:any) => other.id === pokemon.id) === index;\r\n     });\r\n \r\n     return unicosPokemons;\r\n"
+                },
+                {
+                    "date": 1730584323949,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,9 @@\n         type: pokemon.type[0], // Es un array y 0 especifica el primer elemento del array\r\n     }));\r\n \r\n     const unicosPokemons = pokemons.filter(\r\n-        (pokemon:any, index:number) => {\r\n+        (pokemon:any, index:number) => \r\n         pokemons.findIndex((other:any) => other.id === pokemon.id) === index;\r\n     });\r\n \r\n     return unicosPokemons;\r\n"
+                },
+                {
+                    "date": 1730584338927,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,9 +23,9 @@\n     }));\r\n \r\n     const unicosPokemons = pokemons.filter(\r\n         (pokemon:any, index:number) => \r\n-        pokemons.findIndex((other:any) => other.id === pokemon.id) === index;\r\n-    });\r\n+        pokemons.findIndex((other:any) => other.id === pokemon.id) === index\r\n+    );\r\n \r\n     return unicosPokemons;\r\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1730584673637,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,5 +27,7 @@\n         pokemons.findIndex((other:any) => other.id === pokemon.id) === index\r\n     );\r\n \r\n     return unicosPokemons;\r\n-}\n\\ No newline at end of file\n+}\r\n+\r\n+export \n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1730584679264,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,5 +29,5 @@\n \r\n     return unicosPokemons;\r\n }\r\n \r\n-export \n\\ No newline at end of file\n+export function Corregit\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1730584688023,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,5 +29,5 @@\n \r\n     return unicosPokemons;\r\n }\r\n \r\n-export function Corregit\n\\ No newline at end of file\n+export function Correguir\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1730584696977,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,5 +29,5 @@\n \r\n     return unicosPokemons;\r\n }\r\n \r\n-export function Correguir\n\\ No newline at end of file\n+export function CorreguirNombre(name: string)\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1730584702630,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,5 +29,7 @@\n \r\n     return unicosPokemons;\r\n }\r\n \r\n-export function CorreguirNombre(name: string)\n\\ No newline at end of file\n+export function CorreguirNombre(name: string): string {\r\n+    return name[0].toUpperCase() + name.slice(1).toLowerCase();\r\n+}\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1730584719297,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,6 +30,8 @@\n     return unicosPokemons;\r\n }\r\n \r\n export function CorreguirNombre(name: string): string {\r\n-    return name[0].toUpperCase() + name.slice(1).toLowerCase();\r\n+    if (\r\n+        \r\n+    )\r\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1730584726219,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,7 +31,9 @@\n }\r\n \r\n export function CorreguirNombre(name: string): string {\r\n     if (\r\n+\r\n+    ) else {\r\n         \r\n-    )\r\n+    }\r\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1730584735490,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,10 +30,11 @@\n     return unicosPokemons;\r\n }\r\n \r\n export function CorreguirNombre(name: string): string {\r\n-    if (\r\n+    if () \r\n+        {\r\n+            \r\n+        } else {\r\n \r\n-    ) else {\r\n-        \r\n     }\r\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1730584744462,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,11 +30,6 @@\n     return unicosPokemons;\r\n }\r\n \r\n export function CorreguirNombre(name: string): string {\r\n-    if () \r\n-        {\r\n-            \r\n-        } else {\r\n-\r\n-    }\r\n+    if ()\r\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1730584750440,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,6 +30,8 @@\n     return unicosPokemons;\r\n }\r\n \r\n export function CorreguirNombre(name: string): string {\r\n-    if ()\r\n+    if () {\r\n+\r\n+    } else {\r\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1730584759587,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,8 +30,10 @@\n     return unicosPokemons;\r\n }\r\n \r\n export function CorreguirNombre(name: string): string {\r\n-    if () {\r\n+    if (name) {\r\n \r\n     } else {\r\n+\r\n+    }\r\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1730584782902,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,9 +30,9 @@\n     return unicosPokemons;\r\n }\r\n \r\n export function CorreguirNombre(name: string): string {\r\n-    if (name) {\r\n+    if (name.include()) {\r\n \r\n     } else {\r\n \r\n     }\r\n"
+                },
+                {
+                    "date": 1730584790921,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,9 +30,9 @@\n     return unicosPokemons;\r\n }\r\n \r\n export function CorreguirNombre(name: string): string {\r\n-    if (name.include()) {\r\n+    if (name.include('farfetchd')) {\r\n \r\n     } else {\r\n \r\n     }\r\n"
+                },
+                {
+                    "date": 1730584831393,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,8 +29,9 @@\n \r\n     return unicosPokemons;\r\n }\r\n \r\n+// \r\n export function CorreguirNombre(name: string): string {\r\n     if (name.include('farfetchd')) {\r\n \r\n     } else {\r\n"
+                },
+                {
+                    "date": 1730584841672,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,9 +29,9 @@\n \r\n     return unicosPokemons;\r\n }\r\n \r\n-// \r\n+// Corregir textos con su nombre correcto\r\n export function CorreguirNombre(name: string): string {\r\n     if (name.include('farfetchd')) {\r\n \r\n     } else {\r\n"
+                },
+                {
+                    "date": 1730584858875,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,9 +30,9 @@\n     return unicosPokemons;\r\n }\r\n \r\n // Corregir textos con su nombre correcto\r\n-export function CorreguirNombre(name: string): string {\r\n+export function CorregirNombre(name: string): string {\r\n     if (name.include('farfetchd')) {\r\n \r\n     } else {\r\n \r\n"
+                },
+                {
+                    "date": 1730584885620,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n     const datos = await response.json()\r\n     const pokemons = datos.results.map((pokemon:any) => ({\r\n         name: pokemon.name,\r\n         id: pokemon.national_number,\r\n-        imggif: pokemon.sprites['animated'],\r\n+        imggif: CorregirNombre(pokemon.sprites['animated'],\r\n         imgnormal: pokemon.sprites['normal'],\r\n         imglarge: pokemon.sprites['large'],\r\n         total: pokemon.total,\r\n         hp: pokemon.hp,\r\n"
+                },
+                {
+                    "date": 1730584894200,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n     const datos = await response.json()\r\n     const pokemons = datos.results.map((pokemon:any) => ({\r\n         name: pokemon.name,\r\n         id: pokemon.national_number,\r\n-        imggif: CorregirNombre(pokemon.sprites['animated'],\r\n+        imggif: CorregirNombre(pokemon.sprites['animated']),\r\n         imgnormal: pokemon.sprites['normal'],\r\n         imglarge: pokemon.sprites['large'],\r\n         total: pokemon.total,\r\n         hp: pokemon.hp,\r\n"
+                },
+                {
+                    "date": 1730584913563,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,9 +31,9 @@\n }\r\n \r\n // Corregir textos con su nombre correcto\r\n export function CorregirNombre(name: string): string {\r\n-    if (name.include('farfetchd')) {\r\n+    if (name.include('farfetch'd')) {\r\n \r\n     } else {\r\n \r\n     }\r\n"
+                },
+                {
+                    "date": 1730584921799,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,9 +31,9 @@\n }\r\n \r\n // Corregir textos con su nombre correcto\r\n export function CorregirNombre(name: string): string {\r\n-    if (name.include('farfetch'd')) {\r\n+    if (name.include()) {\r\n \r\n     } else {\r\n \r\n     }\r\n"
+                },
+                {
+                    "date": 1730584928578,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,9 +31,9 @@\n }\r\n \r\n // Corregir textos con su nombre correcto\r\n export function CorregirNombre(name: string): string {\r\n-    if (name.include()) {\r\n+    if (name.include(\"farfetch\")) {\r\n \r\n     } else {\r\n \r\n     }\r\n"
+                },
+                {
+                    "date": 1730584938295,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,10 +31,10 @@\n }\r\n \r\n // Corregir textos con su nombre correcto\r\n export function CorregirNombre(name: string): string {\r\n-    if (name.include(\"farfetch\")) {\r\n-\r\n+    if (name.include(\"farfetch'd\")) {\r\n+        return \r\n     } else {\r\n \r\n     }\r\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1730584952858,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,9 +32,9 @@\n \r\n // Corregir textos con su nombre correcto\r\n export function CorregirNombre(name: string): string {\r\n     if (name.include(\"farfetch'd\")) {\r\n-        return \r\n+        return name.replace(\"farfetch'd\", \"Farfetchd\");\r\n     } else {\r\n \r\n     }\r\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1730584961714,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,9 +32,9 @@\n \r\n // Corregir textos con su nombre correcto\r\n export function CorregirNombre(name: string): string {\r\n     if (name.include(\"farfetch'd\")) {\r\n-        return name.replace(\"farfetch'd\", \"Farfetchd\");\r\n+        return name.replace(\"farfetch'd\", \"farfetchd\");\r\n     } else {\r\n-\r\n+        return name;\r\n     }\r\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1730584999493,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,9 +31,9 @@\n }\r\n \r\n // Corregir textos con su nombre correcto\r\n export function CorregirNombre(name: string): string {\r\n-    if (name.include(\"farfetch'd\")) {\r\n+    if (name.includes(\"Farfetch'd \")) {\r\n         return name.replace(\"farfetch'd\", \"farfetchd\");\r\n     } else {\r\n         return name;\r\n     }\r\n"
+                },
+                {
+                    "date": 1730585006270,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,10 +31,10 @@\n }\r\n \r\n // Corregir textos con su nombre correcto\r\n export function CorregirNombre(name: string): string {\r\n-    if (name.includes(\"Farfetch'd \")) {\r\n-        return name.replace(\"farfetch'd\", \"farfetchd\");\r\n+    if (name.includes(\"Farfetch'd\")) {\r\n+        return name.replace(\"Farfetch'd\", \"Farfetchd\");\r\n     } else {\r\n         return name;\r\n     }\r\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1730585023882,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,9 +32,9 @@\n \r\n // Corregir textos con su nombre correcto\r\n export function CorregirNombre(name: string): string {\r\n     if (name.includes(\"Farfetch'd\")) {\r\n-        return name.replace(\"Farfetch'd\", \"Farfetchd\");\r\n+        return name.replace(\"farfetch'd\", \"farfetchd\");\r\n     } else {\r\n         return name;\r\n     }\r\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1730585029882,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,9 +31,9 @@\n }\r\n \r\n // Corregir textos con su nombre correcto\r\n export function CorregirNombre(name: string): string {\r\n-    if (name.includes(\"Farfetch'd\")) {\r\n+    if (name.includes(\"farfetch'd\")) {\r\n         return name.replace(\"farfetch'd\", \"farfetchd\");\r\n     } else {\r\n         return name;\r\n     }\r\n"
+                },
+                {
+                    "date": 1730585046531,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -33,8 +33,9 @@\n // Corregir textos con su nombre correcto\r\n export function CorregirNombre(name: string): string {\r\n     if (name.includes(\"farfetch'd\")) {\r\n         return name.replace(\"farfetch'd\", \"farfetchd\");\r\n+        else\r\n     } else {\r\n         return name;\r\n     }\r\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1730585056764,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -33,9 +33,9 @@\n // Corregir textos con su nombre correcto\r\n export function CorregirNombre(name: string): string {\r\n     if (name.includes(\"farfetch'd\")) {\r\n         return name.replace(\"farfetch'd\", \"farfetchd\");\r\n-        else\r\n+        {else\r\n     } else {\r\n         return name;\r\n     }\r\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1730585062261,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -33,9 +33,11 @@\n // Corregir textos con su nombre correcto\r\n export function CorregirNombre(name: string): string {\r\n     if (name.includes(\"farfetch'd\")) {\r\n         return name.replace(\"farfetch'd\", \"farfetchd\");\r\n-        {else\r\n+        {else if (name.includes(\"farfetch'd\")) {\r\n+            \r\n+        }\r\n     } else {\r\n         return name;\r\n     }\r\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1730585073203,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -34,9 +34,9 @@\n export function CorregirNombre(name: string): string {\r\n     if (name.includes(\"farfetch'd\")) {\r\n         return name.replace(\"farfetch'd\", \"farfetchd\");\r\n         {else if (name.includes(\"farfetch'd\")) {\r\n-            \r\n+            return name.replace(\"farfetch'd\", \"farfetchd\");\r\n         }\r\n     } else {\r\n         return name;\r\n     }\r\n"
+                },
+                {
+                    "date": 1730585651486,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,13 +31,16 @@\n }\r\n \r\n // Corregir textos con su nombre correcto\r\n export function CorregirNombre(name: string): string {\r\n-    if (name.includes(\"farfetch'd\")) {\r\n-        return name.replace(\"farfetch'd\", \"farfetchd\");\r\n-        {else if (name.includes(\"farfetch'd\")) {\r\n-            return name.replace(\"farfetch'd\", \"farfetchd\");\r\n-        }\r\n-    } else {\r\n+    if (name.includes(\"farfetch'd\")){\r\n+        return name.replace(\"farfetch'd\",\"farfetchd\");\r\n+    }else if (name.includes(\"mr.-mime\")){\r\n+        return name.replace(\"mr.-mime\",\"mr-mime\");\r\n+    }else if (name.includes(\"♂\")){\r\n+        return name.replace(\"♂\",\"-m\");\r\n+    }else if (name.includes(\"♀\")){\r\n+        return name.replace(\"♀\",\"-f\");\r\n+    }else{\r\n         return name;\r\n     }\r\n }\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1730582361794,
+            "name": "Commit-0",
+            "content": "import { Pokemon } from \"../models/pokemon.m\"\r\n\r\nexport async function getPokemons(): Promise<Pokemon> { // Promesa que devuelve el modelo de Pokemon.n\r\n    // Llamado a Api Rest\r\n    // API FETCH La API Fetch proporciona una interfaz JavaScript par acceder y manipular partes del canal HTTP, tales como peticiones y respuestas\r\n    const response = await fetch('https://unpkg.com/pokemons@1.1.0/pokemons.json')\r\n\r\n    const datos = await response.json()\r\n    const pokemons = datos.results.map((pokemon:any) => ({\r\n        name: pokemones.name,\r\n        id: pokemon.national_number,\r\n        imggif: pokemon.sprites['animated'],\r\n        imgnormal: pokemon.sprites['normal'],\r\n        imglarge: pokemon.sprites['large'],\r\n        total: pokemon.total,\r\n        hp: pokemon.hp,\r\n        attack: pokemon.attack,\r\n        deffense: pokemon.defense,\r\n        sp_atk: pokemon.sp_atk,\r\n        sp_def: pokemon.sp_def,\r\n        speed: pokemon.speed\r\n    }));\r\n\r\n    return pokemons;\r\n}"
+        }
+    ]
+}

@@ -10,5 +10,6 @@ export type Pokemon = {
     defense: string;
     sp_atk: string;
     sp_def: string;
-    speed: string
+    speed: string;
+    type: Array<any>;
 }

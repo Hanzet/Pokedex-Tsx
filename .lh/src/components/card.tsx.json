@@ -1,0 +1,86 @@
+{
+    "sourceFile": "src/components/card.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 17,
+            "patches": [
+                {
+                    "date": 1730593354363,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1730593400115,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,14 +3,16 @@\n \r\n const { Meta } = Card;\r\n \r\n const App: React.FC = () => (\r\n-  <Card\r\n-    hoverable\r\n-    style={{ width: 240 }}\r\n-    cover={<img alt=\"example\" src=\"https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png\" />}\r\n-  >\r\n-    <Meta title=\"Europe Street beat\" description=\"www.instagram.com\" />\r\n-  </Card>\r\n+    <Card\r\n+        hoverable\r\n+        style={{ width: 240 }}\r\n+        cover={<img alt=\"example\" src=\"https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png\" />}\r\n+    >\r\n+        <Meta\r\n+        \r\n+        />\r\n+    </Card>\r\n );\r\n \r\n export default App;\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1730593405771,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n         style={{ width: 240 }}\r\n         cover={<img alt=\"example\" src=\"https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png\" />}\r\n     >\r\n         <Meta\r\n-        \r\n+            tittle={}\r\n         />\r\n     </Card>\r\n );\r\n \r\n"
+                },
+                {
+                    "date": 1730593413908,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,9 @@\n import React from 'react';\r\n import { Card } from 'antd';\r\n \r\n+\r\n+\r\n const { Meta } = Card;\r\n \r\n const App: React.FC = () => (\r\n     <Card\r\n@@ -9,9 +11,9 @@\n         style={{ width: 240 }}\r\n         cover={<img alt=\"example\" src=\"https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png\" />}\r\n     >\r\n         <Meta\r\n-            tittle={}\r\n+            tittle={tittle}\r\n         />\r\n     </Card>\r\n );\r\n \r\n"
+                },
+                {
+                    "date": 1730593531346,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,7 @@\n import React from 'react';\r\n import { Card } from 'antd';\r\n \r\n-\r\n-\r\n const { Meta } = Card;\r\n \r\n const App: React.FC = () => (\r\n     <Card\r\n"
+                },
+                {
+                    "date": 1730593575738,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,17 +2,22 @@\n import { Card } from 'antd';\r\n \r\n const { Meta } = Card;\r\n \r\n-const App: React.FC = () => (\r\n+interface CardProps {\r\n+    title: string;\r\n+    description: string;\r\n+    imageUrl: string;\r\n+    width?: number;\r\n+}\r\n+\r\n+const CustomCard: React.FC<CardProps> = ({ title, description, imageUrl, width = 240 }) => (\r\n     <Card\r\n         hoverable\r\n-        style={{ width: 240 }}\r\n-        cover={<img alt=\"example\" src=\"https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png\" />}\r\n\\ No newline at end of file\n+        style={{ width }}\r\n+        cover={<img alt=\"example\" src={imageUrl} />}\r\n     >\r\n-        <Meta\r\n-            tittle={tittle}\r\n-        />\r\n+        <Meta title={title} description={description} />\r\n     </Card>\r\n );\r\n \r\n-export default App;\n+export default CustomCard;\r\n"
+                },
+                {
+                    "date": 1730609346368,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,8 +7,9 @@\n     title: string;\r\n     description: string;\r\n     imageUrl: string;\r\n     width?: number;\r\n+    id\r\n }\r\n \r\n const CustomCard: React.FC<CardProps> = ({ title, description, imageUrl, width = 240 }) => (\r\n     <Card\r\n"
+                },
+                {
+                    "date": 1730609448095,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,24 @@\n+import React from 'react';\r\n+import { Card } from 'antd';\r\n+\r\n+const { Meta } = Card;\r\n+\r\n+interface CardProps {\r\n+    title: string;\r\n+    description: string;\r\n+    imageUrl: string;\r\n+    width?: number;\r\n+    id?: string;\r\n+}\r\n+\r\n+const CustomCard: React.FC<CardProps> = ({ id, title, description, imageUrl, width = 240 }) => (\r\n+    <Card\r\n+        hoverable\r\n+        style={{ width }}\r\n+        cover={<img alt=\"example\" src={imageUrl} />}\r\n+    >\r\n+        <Meta title={title} description={description} />\r\n+    </Card>\r\n+);\r\n+\r\n+export default CustomCard;\r\n"
+                },
+                {
+                    "date": 1730609463794,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n \r\n const { Meta } = Card;\r\n \r\n interface CardProps {\r\n-    title: string;\r\n+    title?: string;\r\n     description: string;\r\n     imageUrl: string;\r\n     width?: number;\r\n     id?: string;\r\n@@ -21,28 +21,4 @@\n     </Card>\r\n );\r\n \r\n export default CustomCard;\r\n-import React from 'react';\r\n-import { Card } from 'antd';\r\n-\r\n-const { Meta } = Card;\r\n-\r\n-interface CardProps {\r\n-    title: string;\r\n-    description: string;\r\n-    imageUrl: string;\r\n-    width?: number;\r\n-    id\r\n-}\r\n-\r\n-const CustomCard: React.FC<CardProps> = ({ title, description, imageUrl, width = 240 }) => (\r\n-    <Card\r\n-        hoverable\r\n-        style={{ width }}\r\n-        cover={<img alt=\"example\" src={imageUrl} />}\r\n-    >\r\n-        <Meta title={title} description={description} />\r\n-    </Card>\r\n-);\r\n-\r\n-export default CustomCard;\r\n"
+                },
+                {
+                    "date": 1730609474894,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n const { Meta } = Card;\r\n \r\n interface CardProps {\r\n     title?: string;\r\n-    description: string;\r\n+    description?: string;\r\n     imageUrl: string;\r\n     width?: number;\r\n     id?: string;\r\n }\r\n@@ -16,9 +16,9 @@\n         hoverable\r\n         style={{ width }}\r\n         cover={<img alt=\"example\" src={imageUrl} />}\r\n     >\r\n-        <Meta title={title} description={description} />\r\n+        <Meta title={title} description={description},  />\r\n     </Card>\r\n );\r\n \r\n export default CustomCard;\r\n"
+                },
+                {
+                    "date": 1730609495002,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,10 +15,11 @@\n     <Card\r\n         hoverable\r\n         style={{ width }}\r\n         cover={<img alt=\"example\" src={imageUrl} />}\r\n+        \r\n     >\r\n-        <Meta title={title} description={description},  />\r\n+        <Meta title={title} description={description} />\r\n     </Card>\r\n );\r\n \r\n export default CustomCard;\r\n"
+                },
+                {
+                    "date": 1730609626570,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n \r\n interface CardProps {\r\n     title?: string;\r\n     description?: string;\r\n-    imageUrl: string;\r\n+    imageUrl?: string;\r\n     width?: number;\r\n     id?: string;\r\n }\r\n \r\n@@ -15,9 +15,9 @@\n     <Card\r\n         hoverable\r\n         style={{ width }}\r\n         cover={<img alt=\"example\" src={imageUrl} />}\r\n-        \r\n+        id={id}\r\n     >\r\n         <Meta title={title} description={description} />\r\n     </Card>\r\n );\r\n"
+                },
+                {
+                    "date": 1730609642290,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,11 +3,11 @@\n \r\n const { Meta } = Card;\r\n \r\n interface CardProps {\r\n-    title?: string;\r\n-    description?: string;\r\n-    imageUrl?: string;\r\n+    title: string;\r\n+    description: string;\r\n+    imageUrl: string;\r\n     width?: number;\r\n     id?: string;\r\n }\r\n \r\n@@ -15,9 +15,8 @@\n     <Card\r\n         hoverable\r\n         style={{ width }}\r\n         cover={<img alt=\"example\" src={imageUrl} />}\r\n-        id={id}\r\n     >\r\n         <Meta title={title} description={description} />\r\n     </Card>\r\n );\r\n"
+                },
+                {
+                    "date": 1730609753685,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,12 +7,12 @@\n     title: string;\r\n     description: string;\r\n     imageUrl: string;\r\n     width?: number;\r\n-    id?: string;\r\n+    id?: string;}\r\n }\r\n \r\n-const CustomCard: React.FC<CardProps> = ({ id, title, description, imageUrl, width = 240 }) => (\r\n+const CustomCard: React.FC<CardProps> = ({ title, description, imageUrl, width = 240 }) => (\r\n     <Card\r\n         hoverable\r\n         style={{ width }}\r\n         cover={<img alt=\"example\" src={imageUrl} />}\r\n"
+                },
+                {
+                    "date": 1730609758802,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,10 @@\n     title: string;\r\n     description: string;\r\n     imageUrl: string;\r\n     width?: number;\r\n-    id?: string;}\r\n+    id?: string;\r\n+    name: \r\n }\r\n \r\n const CustomCard: React.FC<CardProps> = ({ title, description, imageUrl, width = 240 }) => (\r\n     <Card\r\n"
+                },
+                {
+                    "date": 1730610263091,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,14 +3,14 @@\n \r\n const { Meta } = Card;\r\n \r\n interface CardProps {\r\n+    name: string;\r\n     title: string;\r\n     description: string;\r\n     imageUrl: string;\r\n     width?: number;\r\n     id?: string;\r\n-    name: \r\n }\r\n \r\n const CustomCard: React.FC<CardProps> = ({ title, description, imageUrl, width = 240 }) => (\r\n     <Card\r\n"
+                },
+                {
+                    "date": 1730610268881,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,14 +3,14 @@\n \r\n const { Meta } = Card;\r\n \r\n interface CardProps {\r\n+    id?: string;\r\n     name: string;\r\n     title: string;\r\n     description: string;\r\n     imageUrl: string;\r\n     width?: number;\r\n-    id?: string;\r\n }\r\n \r\n const CustomCard: React.FC<CardProps> = ({ title, description, imageUrl, width = 240 }) => (\r\n     <Card\r\n"
+                },
+                {
+                    "date": 1730610278924,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,8 +9,9 @@\n     title: string;\r\n     description: string;\r\n     imageUrl: string;\r\n     width?: number;\r\n+    imglarge\r\n }\r\n \r\n const CustomCard: React.FC<CardProps> = ({ title, description, imageUrl, width = 240 }) => (\r\n     <Card\r\n"
+                }
+            ],
+            "date": 1730593354363,
+            "name": "Commit-0",
+            "content": "import React from 'react';\r\nimport { Card } from 'antd';\r\n\r\nconst { Meta } = Card;\r\n\r\nconst App: React.FC = () => (\r\n  <Card\r\n    hoverable\r\n    style={{ width: 240 }}\r\n    cover={<img alt=\"example\" src=\"https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png\" />}\r\n  >\r\n    <Meta title=\"Europe Street beat\" description=\"www.instagram.com\" />\r\n  </Card>\r\n);\r\n\r\nexport default App;"
+        }
+    ]
+}
